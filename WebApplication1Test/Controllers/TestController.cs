@@ -15,7 +15,7 @@ namespace WebApplication1Test.Controllers
             _repository = repository;
         }
 
-        // GET: api/test/Masters
+
         [HttpGet("Masters")]
         public IActionResult GetMasters()
         {
@@ -23,7 +23,7 @@ namespace WebApplication1Test.Controllers
             return Ok(masters);
         }
 
-        // POST: api/test/AddMaster
+
         [HttpPost("AddMaster")]
         public IActionResult AddMaster([FromBody] Master master)
         {
@@ -34,7 +34,7 @@ namespace WebApplication1Test.Controllers
             return CreatedAtAction(nameof(GetMasterById), new { id = addedMaster.Id }, addedMaster);
         }
 
-        // GET: api/test/GetMasterById/5
+
         [HttpGet("GetMasterById/{id}")]
         public IActionResult GetMasterById(int id)
         {
@@ -45,7 +45,7 @@ namespace WebApplication1Test.Controllers
             return Ok(master);
         }
 
-        // GET: api/test/Tasks
+
         [HttpGet("Tasks")]
         public IActionResult GetTasks()
         {
@@ -53,21 +53,21 @@ namespace WebApplication1Test.Controllers
             return Ok(tasks);
         }
 
-        // POST: api/test/AddTask
+
         [HttpPost("AddTask")]
         public IActionResult AddTask([FromBody] Models.Task task)
         {
             if (task == null)
                 return BadRequest();
 
-            if (!ModelState.IsValid) // Проверка на валидность модели
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var addedTask = _repository.AddTask(task);
             return CreatedAtAction(nameof(GetTaskById), new { id = addedTask.Id }, addedTask);
         }
 
-        // GET: api/test/GetTaskById/5
+
         [HttpGet("GetTaskById/{id}")]
         public IActionResult GetTaskById(int id)
         {
